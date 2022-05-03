@@ -8,6 +8,10 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "dompurify": "^2.3.6",
+    "html2canvas": "^1.4.1",
+    "jquery": "^3.6.0",
+    "jspdf": "^2.5.1",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3"
   },
