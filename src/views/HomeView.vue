@@ -11,21 +11,27 @@ export default {
   el: '#app',
   data() {
     return {
-      message: 'Hi my first vue code pen!!!'
+      message: 'Hi my first vue code pen!!!',
+      experiences: [
+        { "job_title": "Assistant", "company_name": "Microsoft", "details": "did something, did something else, did another thing" },
+        { "job_title": "Manager", "company_name": "Apple", "details": "did something, did something else, did another thing" }]
     }
   },
   methods: {
-    //jspdf does not include the bootstrap style layout
-    htmlToPdf: function () {
 
-      var doc = new jsPDF();
-      doc.html(document.getElementById("data"),
-        {
-          callback: function (doc) {
-            doc.save("example.pdf");
-          }
-        }
-      )
+    jsToPdf: function () {
+      var doc = new jsPDF()
+
+      // From Javascript
+      var finalY = doc.lastAutoTable.finalY || 10
+      doc.text('From javascript arrays', 14, finalY + 15)
+      var body = this.experiences
+      doc.autoTable({
+        startY: finalY + 20,
+        body: body,
+      })
+      doc.save('example.pdf')
+
     }
   }
 };
@@ -33,12 +39,10 @@ export default {
 
 <template>
   <div id="data">
-    <h1>This is a demo of converting HTML to PDF</h1>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum saepe, nihil ipsa ab rem, natus atque odio vero
-      ea voluptatum vitae repellendus eligendi commodi eius officiis eaque molestias sint! Et?</p>
-
+    {{ experiences }}
   </div>
-  <button v-on:click="htmlToPdf">Download File As PDF</button>
+
+  <button v-on:click="jsToPdf">Download File As PDF</button>
 </template>
 
 <style>
