@@ -18,19 +18,25 @@ export default {
     }
   },
   methods: {
-
-    jsToPdf: function () {
-      var doc = new jsPDF()
+    htmlToPdf: function () {
+      var doc = new jsPDF('p', 'pt', 'A4')
 
       // From Javascript
-      var finalY = doc.lastAutoTable.finalY || 10
-      doc.text('From javascript arrays', 14, finalY + 15)
-      var body = this.experiences
-      doc.autoTable({
-        startY: finalY + 20,
-        body: body,
-      })
-      doc.save('example.pdf')
+      // var finalY = doc.lastAutoTable.finalY || 10
+      // doc.text('From javascript arrays', 14, finalY + 15)
+      // var body = this.experiences
+      // doc.autoTable({
+      //   startY: finalY + 20,
+      //   body: body,
+      // })
+      console.log(this.$refs["data"])
+      doc.html(this.$refs["data"], {
+        margin: [50, 50, 50, 50],
+        callback: function () {
+          doc.save('example.pdf')
+        }
+      });
+
 
     }
   }
@@ -38,11 +44,13 @@ export default {
 </script>
 
 <template>
-  <div id="data">
-    {{ experiences }}
+  <div id="data" ref="data">
+    <h1>Here's a heading 1</h1>
+    <h2>Here's a heading 2</h2>
+    <p>Here is some paragraph text.</p>
   </div>
 
-  <button v-on:click="jsToPdf">Download File As PDF</button>
+  <button v-on:click="htmlToPdf">Download File As PDF</button>
 </template>
 
 <style>
