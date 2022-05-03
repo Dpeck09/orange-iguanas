@@ -41,7 +41,13 @@ export default {
   },
   methods: {
     htmlToPdf: function () {
-      var doc = new jsPDF('p', 'pt', 'A4')
+      var doc = new jsPDF({
+        orientation: 'p',
+        unit: 'in',
+        format: 'letter',
+        putOnlyUsedFonts: true,
+        floatPrecision: 16 // or "smart", default is 16
+      })
 
       // From Javascript
       // var finalY = doc.lastAutoTable.finalY || 10
@@ -53,7 +59,9 @@ export default {
       // })
       console.log(this.$refs["data"])
       doc.html(this.$refs["data"], {
-        margin: [50, 50, 50, 50],
+        margin: [0.25, 0.5, 0.25, 0.5],
+        width: 7,
+        windowWidth: 672,
         autoPaging: 'text',
         callback: function () {
           doc.save('example.pdf')
@@ -89,14 +97,13 @@ export default {
       <h5>{{ experience.start_date }} - {{ experience.end_date }}</h5>
       <p>{{ experience.details }}</p>
     </div>
-
   </div>
-
   <button v-on:click="htmlToPdf">Download File As PDF</button>
 </template>
 
 <style>
 body {
   font-family: sans-serif;
+  ;
 }
 </style>
