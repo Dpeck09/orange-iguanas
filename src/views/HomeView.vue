@@ -33,7 +33,7 @@ export default {
         ],
         capstone: {
           name: "Friends and Family",
-          description: "An app to locate your friends and family on the map. Keep track of them. All of them.",
+          description: "An app to locate your friends and family on the map. Keep track of them. All of them. Watch where they go. You can never be too careful.",
           url: "/example.html"
         }
       }
@@ -63,8 +63,8 @@ export default {
         width: 7,
         windowWidth: 672,
         autoPaging: 'text',
-        callback: function () {
-          doc.save('example.pdf')
+        callback: () => {
+          doc.save(`${this.student.first_name}-${this.student.last_name}-resume.pdf`)
         }
       });
     }
@@ -76,6 +76,7 @@ export default {
   <div id="data" ref="data">
     <h1>{{ student.first_name }} {{ student.last_name }}</h1>
     <p>{{ student.email }} | {{ student.phone_number }}</p>
+    <hr>
     <p>{{ student.short_bio }}</p>
     <h2>Skills</h2>
     <span v-for="skill in student.skills">{{ skill.name }}, </span>
@@ -104,6 +105,5 @@ export default {
 <style>
 body {
   font-family: sans-serif;
-  ;
 }
 </style>
