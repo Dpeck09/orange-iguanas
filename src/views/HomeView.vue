@@ -74,36 +74,82 @@ export default {
 
 <template>
   <div id="data" ref="data">
-    <h1>{{ student.first_name }} {{ student.last_name }}</h1>
-    <p>{{ student.email }} | {{ student.phone_number }}</p>
-    <hr>
-    <p>{{ student.short_bio }}</p>
+    <div id="HeadResume">
+      <h1>{{ student.first_name }} {{ student.last_name }}</h1>
+      <p class="email">{{ student.email }} | {{ student.phone_number }}</p>
+    </div>
+    <p class="bio">{{ student.short_bio }}</p>
     <h2>Skills</h2>
-    <span v-for="skill in student.skills">{{ skill.name }}, </span>
+    <p><span v-for="skill in student.skills">{{ skill.name }}, </span></p>
     <h2>Capstone Project</h2>
     <h3>{{ student.capstone.name }}</h3>
-    <p>{{ student.capstone.url }}</p>
-    <p>{{ student.capstone.description }}</p>
+    <p>{{ student.capstone.url }}<br>{{ student.capstone.description }}</p>
     <h2>Education</h2>
     <div v-for="education in student.educations">
-      <h3>{{ education.university_name }}</h3>
-      <h4>{{ education.degree }}</h4>
-      <h5>{{ education.start_date }} - {{ education.end_date }}</h5>
+     <h5>{{ education.start_date }} - {{ education.end_date }}</h5>
+      <h3>{{ education.university_name }}<br>{{ education.degree }}</h3>
       <p>{{ education.details }}</p>
     </div>
     <h2>Experience</h2>
     <div v-for="experience in student.experiences">
+      <h5>{{ experience.start_date }} - {{ experience.end_date }}</h5>
       <h3>{{ experience.company }}</h3>
       <h4>{{ experience.job_title }}</h4>
-      <h5>{{ experience.start_date }} - {{ experience.end_date }}</h5>
       <p>{{ experience.details }}</p>
     </div>
   </div>
+  <div id="button">
   <button v-on:click="htmlToPdf">Download File As PDF</button>
+  </div>
 </template>
 
 <style>
 body {
+  margin: 2;
+  padding: 0;
   font-family: sans-serif;
 }
+
+p {
+  font-style: italic;
+  margin-top: -20px;
+  padding: 5px;
+  margin: 5px;
+}
+
+h1 {
+  text-align: center;
+  color: blue;
+}
+
+h2 {
+  text-align: left;
+  color: blue;
+}
+
+#HeadResume {
+  text-align: center;
+  margin-top: -40px;
+}
+
+#button {
+  text-align: center;
+  margin-top: -128%;
+  margin-left: 76%;
+  padding: 15px;
+}
+
+h5 {
+  text-align: right;
+}
+
+.bio {
+  padding: 15px;
+}
+
+.email {
+  margin-top: -4%;
+}
+
+
 </style>
