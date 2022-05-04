@@ -6,7 +6,7 @@ import jsPDF from "jspdf";
 
 export default {
   el: '#app',
-  created: function () {
+  beforeCreate: function () {
     this.fontFamily = this.$route.query.font || this.fontFamily
     axios.get(`/students/${this.$route.params.id}.json`)
       .then(response => {
