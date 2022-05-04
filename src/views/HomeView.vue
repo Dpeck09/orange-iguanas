@@ -6,14 +6,14 @@ import jsPDF from "jspdf";
 
 export default {
   el: '#app',
-  // created: function () {
-  //   axios.get(`/students/1.json`)
-  //     .then(response => {
-  //       console.log(response.data)
-  //       this.student = response.data
-  //       this.htmlToPdf()
-  //     });
-  // },
+  created: function () {
+    axios.get(`/students/5.json`)
+      .then(response => {
+        console.log(response.data)
+        this.student = response.data
+        // this.htmlToPdf()
+      });
+  },
   data() {
     return {
       student: {
@@ -33,16 +33,16 @@ export default {
           { start_date: "04/02/1997", end_date: "05/17/2001", degree: "Teaching Certificate", university_name: "UC Berkeley", details: "Majored in a subject with a minor in some other subject" }
         ],
         skills: [
-          { name: "Ruby" },
-          { name: "JavaScript" },
-          { name: "teaching" },
-          { name: "web development" }
+          { skill: "Ruby" },
+          { skill: "JavaScript" },
+          { skill: "teaching" },
+          { skill: "web development" }
         ],
-        capstones: [{
+        capstone: {
           name: "Friends and Family",
           description: "An app to locate your friends and family on the map. Keep track of them. All of them. Watch where they go. You can never be too careful.",
           url: "/example.html"
-        }]
+        }
       }
     }
   },
@@ -65,6 +65,7 @@ export default {
           doc.save(`${this.student.first_name}-${this.student.last_name}-resume.pdf`)
         }
       });
+      console.log(this.student.skills)
     }
   }
 };
@@ -79,13 +80,13 @@ export default {
     <hr>
     <p>{{ student.short_bio }}</p>
     <h2>Skills</h2>
-    <span v-for="skill in student.skills">{{ skill.name }}, </span>
+    <span v-for="skill in student.skills">{{ skill.skill }}<span v-if="skill != this.student.skills">, </span></span>
     <h2>Capstone Project</h2>
-    <div v-for="capstone in student.capstones">
-      <h3>{{ capstone.name }}</h3>
-      <p>{{ capstone.url }}</p>
-      <p>{{ capstone.description }}</p>
-    </div>
+
+    <h3>{{ student.capstone.name }}</h3>
+    <p>{{ student.capstone.url }}</p>
+    <p>{{ student.capstone.description }}</p>
+
     <h2>Education</h2>
     <div v-for="education in student.educations">
       <h3>{{ education.university_name }}</h3>
