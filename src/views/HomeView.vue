@@ -126,6 +126,9 @@ p {
 h1 {
   text-align: center;
   color: blue;
+  margin-top: 25px;
+  padding-bottom: 25px;
+  position: relative;
 }
 
 h2 {
@@ -139,12 +142,12 @@ h2 {
   border-bottom: solid;
 }
 
-#button {
+/* #button {
   text-align: center;
-  margin-top: -131%;
+  margin-top: -61%;
   margin-left: 76%;
   padding: 15px;
-}
+} */
 
 h5 {
   text-align: right;
