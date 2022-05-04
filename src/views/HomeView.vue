@@ -1,17 +1,21 @@
 /* eslint-disable */
 
 <script>
-
+import axios from "axios";
 import jsPDF from "jspdf";
-// import html2canvas from "html2canvas";
-// import dompurify from "dompurify";
-// import $ from "jquery";
 
 export default {
   el: '#app',
+  // created: function () {
+  //   axios.get(`/students/1.json`)
+  //     .then(response => {
+  //       console.log(response.data)
+  //       this.student = response.data
+  //       this.htmlToPdf()
+  //     });
+  // },
   data() {
     return {
-      message: 'Hi my first vue code pen!!!',
       student: {
         first_name: "Brian",
         last_name: "Rice",
@@ -52,11 +56,10 @@ export default {
         floatPrecision: 16 // or "smart", default is 16
       })
 
-      console.log(this.$refs["data"])
       doc.html(this.$refs["data"], {
         margin: [0.25, 0.5, 0.25, 0.5],
-        width: 7,
-        windowWidth: 672,
+        width: 7.5,
+        windowWidth: 720,
         autoPaging: 'text',
         callback: () => {
           doc.save(`${this.student.first_name}-${this.student.last_name}-resume.pdf`)
@@ -70,15 +73,19 @@ export default {
 <template>
   <div id="data" ref="data">
     <h1>{{ student.first_name }} {{ student.last_name }}</h1>
-    <p>{{ student.email }} | {{ student.phone_number }}</p>
+    <p>{{ student.email }} | {{ student.phone_number }} | {{ student.linkedin_url }} | {{ student.github_url }} | {{
+        student.twitter_handle
+    }}</p>
     <hr>
     <p>{{ student.short_bio }}</p>
     <h2>Skills</h2>
     <span v-for="skill in student.skills">{{ skill.name }}, </span>
     <h2>Capstone Project</h2>
-    <h3>{{ student.capstone.name }}</h3>
-    <p>{{ student.capstone.url }}</p>
-    <p>{{ student.capstone.description }}</p>
+    <div v-for="capstone in student.capstones">
+      <h3>{{ capstone.name }}</h3>
+      <p>{{ capstone.url }}</p>
+      <p>{{ capstone.description }}</p>
+    </div>
     <h2>Education</h2>
     <div v-for="education in student.educations">
       <h3>{{ education.university_name }}</h3>
