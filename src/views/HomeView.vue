@@ -7,7 +7,7 @@ import jsPDF from "jspdf";
 export default {
   el: '#app',
   created: function () {
-    axios.get(`/students/5.json`)
+    axios.get(`/students/${this.$route.params.id}.json`)
       .then(response => {
         console.log(response.data)
         this.student = response.data

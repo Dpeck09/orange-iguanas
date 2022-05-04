@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 
 const routes = [
   {
-    path: '/',
+    path: '/pdf/:id',
     name: 'home',
     component: HomeView
   },
