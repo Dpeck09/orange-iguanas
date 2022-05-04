@@ -6,13 +6,13 @@ import jsPDF from "jspdf";
 
 export default {
   el: '#app',
-  beforeCreate: function () {
+  created: function () {
     this.fontFamily = this.$route.query.font || this.fontFamily
     axios.get(`/students/${this.$route.params.id}.json`)
       .then(response => {
         console.log(response.data)
         this.student = response.data
-        // this.htmlToPdf()
+        // this.htmlToPdf() // uncomment this to automatically download PDF on page load
       });
   },
   data() {
