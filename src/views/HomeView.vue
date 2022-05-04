@@ -7,7 +7,8 @@ import jsPDF from "jspdf";
 export default {
   el: '#app',
   created: function () {
-    axios.get(`/students/5.json`)
+    this.fontFamily = this.$route.query.font || this.fontFamily
+    axios.get(`/students/${this.$route.params.id}.json`)
       .then(response => {
         console.log(response.data)
         this.student = response.data
@@ -16,6 +17,7 @@ export default {
   },
   data() {
     return {
+      fontFamily: 'sans-serif',
       student: {
         first_name: "Brian",
         last_name: "Rice",
@@ -72,10 +74,13 @@ export default {
 </script>
 
 <template>
-  <div id="data" ref="data">
+  <div id="data" ref="data" v-bind:style="`font-family: ${this.fontFamily}`">
     <div id="HeadResume">
       <h1>{{ student.first_name }} {{ student.last_name }}</h1>
-      <p class="email"><a href="mailto:brice@actualize.co">{{ student.email }} </a> | {{ student.phone_number }} | <a href="#">{{ student.linkedin_url }}</a> | <a href="#">{{ student.twitter_handle }}</a> | <a href="#">{{ student.github_url }} </a> </p>
+      <p class="email"><a href="mailto:brice@actualize.co">{{ student.email }} </a> | {{ student.phone_number }} | <a
+          href="#">{{ student.linkedin_url }}</a> | <a href="#">{{ student.twitter_handle }}</a> | <a href="#">{{
+              student.github_url
+          }} </a> </p>
     </div>
     <p class="bio">{{ student.short_bio }}</p>
     <h2>Skills</h2>
@@ -87,7 +92,7 @@ export default {
 
     <h2>Education</h2>
     <div v-for="education in student.educations">
-     <h5>{{ education.start_date }} - {{ education.end_date }}</h5>
+      <h5>{{ education.start_date }} - {{ education.end_date }}</h5>
       <h3>{{ education.university_name }}<br>{{ education.degree }}</h3>
       <p>{{ education.details }}</p>
     </div>
@@ -100,7 +105,7 @@ export default {
     </div>
   </div>
   <div id="button">
-  <button v-on:click="htmlToPdf">Download File As PDF</button>
+    <button v-on:click="htmlToPdf">Download File As PDF</button>
   </div>
 </template>
 
@@ -131,7 +136,7 @@ h2 {
 #HeadResume {
   text-align: center;
   margin-top: -10px;
-  border-bottom: solid; 
+  border-bottom: solid;
 }
 
 #button {
@@ -152,6 +157,4 @@ h5 {
 .email {
   margin-top: -4%;
 }
-
-
 </style>
