@@ -7,6 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "core-js": "^3.8.3",
     "dompurify": "^2.3.6",
     "html2canvas": "^1.4.1",
