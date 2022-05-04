@@ -76,7 +76,7 @@ export default {
   <div id="data" ref="data">
     <div id="HeadResume">
       <h1>{{ student.first_name }} {{ student.last_name }}</h1>
-      <p class="email">{{ student.email }} | {{ student.phone_number }}</p>
+      <p class="email"><a href="mailto:brice@actualize.co">{{ student.email }} </a> | {{ student.phone_number }}</p>
     </div>
     <p class="bio">{{ student.short_bio }}</p>
     <h2>Skills</h2>
@@ -129,7 +129,8 @@ h2 {
 
 #HeadResume {
   text-align: center;
-  margin-top: -40px;
+  margin-top: -10px;
+  border-bottom: solid; 
 }
 
 #button {
