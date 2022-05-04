@@ -18,11 +18,10 @@ export default {
       var doc = new jsPDF();
       doc.html(document.getElementById("data"),
         {
-          callback: function (doc) {
-            doc.save("example.pdf");
-          }
+      callback: function (doc) {
+      doc.save("example.pdf");
         }
-      )
+      });
     }
   }
 };
