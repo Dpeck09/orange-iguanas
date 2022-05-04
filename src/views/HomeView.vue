@@ -17,6 +17,9 @@ export default {
         last_name: "Rice",
         email: "brice@actualize.co",
         phone_number: "555-5555",
+        linkedin_url: 'linkedin.com/in/riceb',
+        twitter_handle: '@riceb',
+        github_url: 'github.com/riceb',
         short_bio: "This is a guy that has done some things, probably.",
         experiences: [
           { start_date: "12/24/21", end_date: "03/01/22", job_title: "Teacher", company_name: "A School Maybe", details: "Did some stuff. Did some other things. Taught some stuff." },
@@ -31,11 +34,11 @@ export default {
           { name: "teaching" },
           { name: "web development" }
         ],
-        capstone: {
+        capstones: [{
           name: "Friends and Family",
           description: "An app to locate your friends and family on the map. Keep track of them. All of them. Watch where they go. You can never be too careful.",
           url: "/example.html"
-        }
+        }]
       }
     }
   },
@@ -49,14 +52,6 @@ export default {
         floatPrecision: 16 // or "smart", default is 16
       })
 
-      // From Javascript
-      // var finalY = doc.lastAutoTable.finalY || 10
-      // doc.text('From javascript arrays', 14, finalY + 15)
-      // var body = this.experiences
-      // doc.autoTable({
-      //   startY: finalY + 20,
-      //   body: body,
-      // })
       console.log(this.$refs["data"])
       doc.html(this.$refs["data"], {
         margin: [0.25, 0.5, 0.25, 0.5],
